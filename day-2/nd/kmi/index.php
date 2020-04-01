@@ -14,7 +14,7 @@
         <h1 class="h1">KMI Skaičiuoklė</h1>
     </header>
 
-    <main class="mai">
+    <main class="main">
         <form action="index.php" method="POST">
             <label for="kg">Iveskite savo svorį</label>
             <input type="number" name="kg">
@@ -28,21 +28,30 @@
                 $svoris = $_POST["kg"];
                 $ugis = $_POST["ugis"];
 
-                $kmi = $svoris / pow($ugis, 2);
+                $kmi;
+                $isvada;
+                $picture;
 
-                $isvada = "";
-
-                if ($kmi < 18.5) {
-                    $isvada = "Gal tau laikas suvalgyti kebabą?";
-                } else if ($kmi < 25) {
-                    $isvada = "Tu esi tiesiog nuostabus";
-                } else if ($kmi < 30) {
-                    $isvada = "Gal tau laikas nevalgyti po 6?";
+                if ($ugis <= 0 || $svoris <= 0) {
+                    echo "";
                 } else {
-                    $isvada = "Storas kiaulė";
+                    $kmi = $svoris / pow($ugis, 2);
+                    if ($kmi < 18.5) {
+                        $isvada = "Suvalgyk kebabą!";
+                        $picture = "dziusna";
+                    } else if ($kmi < 25) {
+                        $isvada = "Tu esi tiesiog nuostabus.";
+                        $picture = "ripped";
+                    } else if ($kmi < 30) {
+                        $isvada = "Gal tau laikas nevalgyti po 6 h?";
+                        $picture = "over";
+                    } else {
+                        $isvada = "Storas kiaulė.";
+                        $picture = "fat";
+                    }
+                    echo "$isvada Tavo KMI: $kmi";
+                    echo "<br><br><img src=" . $picture . ".jpg height=\"300\">";
                 }
-
-                echo $isvada;
                 ?>
             </p>
         </div>

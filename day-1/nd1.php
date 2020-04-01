@@ -24,13 +24,13 @@
     ?>
 
     <?php
-        $kintamasis = "Mantas";
-        print($kintamsis);
+    $kintamasis = "Mantas";
+    print($kintamsis);
 
-        print('<p>' . $kintamasis . '</p>');
+    print('<p>' . $kintamasis . '</p>');
 
-        //escape equences
-        print("<p style=\"color: red\">" .  $kintamasis . '</p>');
+    //escape equences
+    print("<p style=\"color: red\">" .  $kintamasis . '</p>');
     ?>
 </body>
 
