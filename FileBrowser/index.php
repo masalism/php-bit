@@ -20,7 +20,8 @@
             <th>Actions</th>
         </tr>
         <?php
-        $dir = '../FileBrowser';
+
+        $dir = "../.." . $_SERVER['REQUEST_URI'];
 
         $files = scandir($dir);
 
@@ -40,10 +41,10 @@
                 $value = null;
             } else {
                 print("<tr>
-                    <td>$type</td>
-                    <td>$newValue</td> 
-                    <td></td> 
-                </tr>");
+                           <td>$type</td>
+                           <td>$newValue</td> 
+                           <td></td> 
+                       </tr>");
             }
         }
 
