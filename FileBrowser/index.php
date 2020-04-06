@@ -36,7 +36,6 @@
                 $newValue = $value;
             }
 
-            echo "<br> $isDir";
             if ($value == "." || $value == "..") {
                 $value = null;
             } else {
