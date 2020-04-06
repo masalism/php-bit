@@ -58,7 +58,31 @@
     } else {
         echo "Zmones liftu kilti gali bendras svoris $visasSvoris";
     }
+    print('<br>');
 
+    // Daugiamatis
+
+    $dArray = array(
+        array("1,3,5,7,4,3,7"),
+        array("4,6,3,6,9,2,6")
+    );
+
+    $asociatyvus = [
+        "Jonas" => "Jonaz",
+        "Petras" => "Petraitis",
+        "Vardenis" => "Pavardenis"
+    ];
+
+    function dropValueOut($value)
+    {
+        if ($value == "Jonaz") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    print_r(array_filter($asociatyvus, "dropValueOut", ARRAY_FILTER_USE_BOTH));
 
 
     ?>
