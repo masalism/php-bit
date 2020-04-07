@@ -8,6 +8,7 @@
         .lentele {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         .stulpelis {
@@ -25,15 +26,17 @@
         <input type="submit" value="Skaiciuoti">
     </form>
     <br>
+
     <?php
 
     $num = $_POST['num'];
 
     for ($i = 1; $i <= $num; $i++) {
-        echo "$num * $i = " . $num * $i . "<br>";
+        echo "<p>$num * $i = " . $num * $i . "</p>";
     }
 
     ?>
+
 
     <div class="lentele">
         <?php
