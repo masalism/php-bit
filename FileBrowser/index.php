@@ -8,48 +8,75 @@
 </head>
 
 <body>
-    <h1>
-        <?php
-        echo $_SERVER['REQUEST_URI'];
-        ?>
-    </h1>
-    <table style="width: 100%" border="1">
-        <tr>
-            <th>Type</th>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-        <?php
 
-        $dir = "../.." . $_SERVER['REQUEST_URI'];
+    <?php
 
-        $files = scandir($dir);
+    $path = './' . $_GET["path"];
+    $data = scandir($path);
 
-        foreach ($files as $value) {
-            $type;
-            $newValue;
+    echo '<h2>Directory: ' . str_replace('?path=', '', $_SERVER['REQUEST_URI']) . "</h2>";
 
-            if (is_dir($value)) {
-                $type = "Directory";
-                $newValue = "<a href=\"$dir/$value\">$value</a>";
-            } else if (is_file($value)) {
-                $type = "File";
-                $newValue = $value;
-            }
+    echo "<table style=\"width: 100%\" border=\"1\"><thead><tr><th>Type</th><th>Name<th>Action</th></th></thead>";
+    echo "<tbody>";
 
-            if ($value == "." || $value == "..") {
-                $value = null;
-            } else {
-                print("<tr>
-                           <td>$type</td>
-                           <td>$newValue</td> 
-                           <td></td> 
-                       </tr>");
-            }
+    foreach ($data as $value) {
+        $newValue = (is_dir($path . $value) 
+        ? '<a href="' . (isset($_GET['path']) 
+            ? $_SERVER['REQUEST_URI'] . $value . '/' 
+            : $_SERVER['REQUEST_URI'] . '?path=' . $value . '/' ) . '">' . $value . '</a>' 
+        : $value);
+        $type = is_dir($path . $value) ? "Directory" : "File";
+        $options = is_dir($path . $value) ? null : '<button>Delete</button><button>Download</button>';
+
+        if ($value != ".." && $value != '.') {
+            echo "<tr>";
+            echo "<td>$type</td>";
+            echo "<td>$newValue</td>";
+            echo "<td>$options</td>";
+            echo "</tr>";
         }
+    }
 
-        ?>
-    </table>
+    echo "</tbody>";
+    echo "</table>";
+
+    
+        // if (is_dir($path . $value)) {
+        //     // $options = null;
+        //     if (isset($GET['path'])) {
+        //         $newValue = '<a href="' . $_SERVER['REQUEST_URI'] . $value . '/' . '">' . $value . '</a>';
+        //     } else {
+        //         $newValue = '<a href="' . $_SERVER['REQUEST_URI'] . '?path=' . $value . '/' . '">' . $value . '</a>';
+        //     }
+        // } else {
+        //     $newValue = $value;
+        //     // $options = "<button>Delete</button><button>Download</button>";
+        // }
+
+    // foreach ($files as $value) {
+    //     $type;
+    //     $newValue;
+
+    //     if (is_dir($value)) {
+    //         $type = "Directory";
+    //         $newValue = "<a href=\"$dir/$value\">$value</a>";
+    //     } else if (is_file($value)) {
+    //         $type = "File";
+    //         $newValue = $value;
+    //     }
+
+    //     if ($value == "." || $value == "..") {
+    //         $value = null;
+    //     } else {
+    //         print("<tr>
+    //                    <td>$type</td>
+    //                    <td>$newValue</td> 
+    //                    <td></td> 
+    //                </tr>");
+    //     }
+
+    ?>
+
 
 
 </body>

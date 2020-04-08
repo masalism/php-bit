@@ -19,9 +19,9 @@ foreach ($files as $value) {
         $value = null;
     } else {
         print("<tr>
-                    <td>$type</td>
-                    <td>$newValue</td> 
-                    <td></td> 
-                </tr>");
+                   <td>$type</td>
+                   <td>$newValue</td> 
+                   <td></td> 
+               </tr>");
     }
 }
